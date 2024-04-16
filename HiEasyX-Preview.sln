@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34804.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HiEasyX-Preview", "HiEasyX-Preview\HiEasyX-Preview.vcxproj", "{D040AC5B-F9BF-4054-AFEE-F0328DE135C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D040AC5B-F9BF-4054-AFEE-F0328DE135C0}.Debug|x64.ActiveCfg = Debug|x64
+		{D040AC5B-F9BF-4054-AFEE-F0328DE135C0}.Debug|x64.Build.0 = Debug|x64
+		{D040AC5B-F9BF-4054-AFEE-F0328DE135C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{D040AC5B-F9BF-4054-AFEE-F0328DE135C0}.Debug|x86.Build.0 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5A0B4CD-A269-4E34-85AA-AFF523873052}
+	EndGlobalSection
+EndGlobal
