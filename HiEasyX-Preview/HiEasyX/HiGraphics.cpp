@@ -4,19 +4,42 @@
 #include "HiMacro.h"
 #include "HiWindow.h"
 
-HiDrawingLibrary HiDrawingLibraryStyle;
+namespace HiEasyXPrivate
+{
+	std::unordered_map<std::thread::id, HiDrawSetStuct> HiDrawSet;
+}
 
 namespace HiEasyX
 {
-	////////////****** 全局变量 ******////////////
-	//颜色，粗细等等
+	// 绘图样式设置函数
+	void HiSetEasyXStyle(int SmoothingMode)
+	{
+		std::thread::id ThreadId = std::this_thread::get_id();
 
-	////////////****** 绘图相关函数 ******////////////
+		HiEasyXPrivate::HiDrawSet[ThreadId].DrawLibrary = HiEasyXPrivate::HiDrawLibraryEnum::EasyX;
+		if (SmoothingMode != -1) HiEasyXPrivate::HiDrawSet[ThreadId].SmoothingMode = max(0, min(SmoothingMode, 2));
+	}
+	void HiSetGdiplusStyle(int SmoothingMode)
+	{
+		std::thread::id ThreadId = std::this_thread::get_id();
+
+		HiEasyXPrivate::HiDrawSet[ThreadId].DrawLibrary = HiEasyXPrivate::HiDrawLibraryEnum::Gdiplus;
+		if (SmoothingMode != -1) HiEasyXPrivate::HiDrawSet[ThreadId].SmoothingMode = max(0, min(SmoothingMode, 2));
+	}
+
+	// 绘图相关功能
 	void HiCircle(int x, int y, int radius)
 	{
+		std::thread::id ThreadId = std::this_thread::get_id();
+
 		BEGIN_TASK();
-		if (HiDrawingLibraryStyle.DrawingLibrary == 0) circle(x, y, radius);
-		else
+
+		// EasyX
+		if (HiEasyXPrivate::HiDrawSet[ThreadId].DrawLibrary == HiEasyXPrivate::HiDrawLibraryEnum::EasyX)
+		{
+			circle(x, y, radius);
+		}
+		else if (HiEasyXPrivate::HiDrawSet[ThreadId].DrawLibrary == HiEasyXPrivate::HiDrawLibraryEnum::Gdiplus)
 		{
 			Gdiplus_Try_Starup();
 			Gdiplus::Graphics graphics(GetImageHDC(HiEasyX::GetWindowImage()));
