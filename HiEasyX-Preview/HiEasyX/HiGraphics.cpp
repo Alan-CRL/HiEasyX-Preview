@@ -32,6 +32,7 @@ namespace HiEasyX
 	{
 		std::thread::id ThreadId = std::this_thread::get_id();
 
+		// 后续需要修改指定 id
 		BEGIN_TASK();
 
 		// EasyX
